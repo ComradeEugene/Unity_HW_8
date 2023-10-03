@@ -15,6 +15,7 @@ public class Patrol : MonoBehaviour
         points = new Vector3[numberOfPoints];
         ArrayFilling();
         count = 0;
+        transform.LookAt(points[count]);
     }
 
     void Update()
@@ -24,18 +25,16 @@ public class Patrol : MonoBehaviour
         {
             transform.position = Vector3.MoveTowards(transform.position, points[count], speed * Time.deltaTime);
         }
-        if (transform.position == points[count] && count < numberOfPoints)
+        if (transform.position == points[count] && count < numberOfPoints - 1)
         {
             count++;
             transform.LookAt(points[count]);
         }
-        else if (count == numberOfPoints)
+        else if (transform.position == points[count] && count == numberOfPoints - 1)
         {
             forward = false;
         }
     }
-
-
 
     private void ArrayFilling()
     {
@@ -43,10 +42,5 @@ public class Patrol : MonoBehaviour
         {
             points[i] = new Vector3(Random.Range(-10f,10f), Random.Range(-10f, 10f), Random.Range(-10f, 10f));
         }
-    }
-
-    private void MoveToPoint()
-    {
-
     }
 }

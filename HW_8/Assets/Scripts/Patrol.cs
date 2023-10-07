@@ -10,7 +10,7 @@ public class Patrol : MonoBehaviour
 	private bool forward;
     private Vector3[] points;
     private Vector3 currentTargey;
-    [SerializeField] private int count;
+    private int count;
 
     void Start()
     {
@@ -71,4 +71,10 @@ public class Patrol : MonoBehaviour
 		currentTargey = points[count];
 		transform.LookAt(currentTargey);
 	}
+
+    public void StopPatrol()
+    {
+        count = -1;
+        gameObject.SetActive(false);
+    }
 }
